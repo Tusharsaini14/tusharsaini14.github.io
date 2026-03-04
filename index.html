@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CW1D42DYM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6CW1D42DYM');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tushar Saini — Senior Android Engineer</title>
@@ -633,6 +624,31 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+
+  /* ── DOWNLOAD RESUME BTN ── */
+  .btn-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--gold);
+    padding: 0.9rem 2.2rem;
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+  }
+  .btn-dl:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: translateY(-2px);
+  }
 </style>
 </head>
 <body>
@@ -708,7 +724,8 @@
       <div class="corner tr"></div>
       <div class="corner bl"></div>
       <div class="corner br"></div>
-<img src="photo.jpg" alt="Tushar Saini" style="width:100%;height:100%;object-fit:cover;border-radius:4px;">
+      <div class="photo-avatar">👤</div>
+      <div class="photo-hint">Your Photo Here</div>
     </div>
   </div>
 </section>
@@ -1275,7 +1292,13 @@
       </a>
     </div>
 
-    <a href="mailto:14tusharsaini@gmail.com" class="btn-gold reveal">Send Me a Message</a>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:0;">
+      <a href="mailto:14tusharsaini@gmail.com" class="btn-gold reveal">Send Me a Message</a>
+      <a href="tushar-saini-resume.pdf" download="Tushar_Saini_Android_Engineer_Resume.pdf" class="btn-dl reveal d1">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+    </div>
   </div>
 </section>
 
