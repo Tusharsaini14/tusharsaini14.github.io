@@ -571,6 +571,59 @@
     .stat { border-right: none; border-bottom: 1px solid var(--gold-border); }
     .stat:last-child { border-bottom: none; }
   }
+
+  /* ── PLAY STORE + QR ── */
+  .proj-ps-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    gap: 1rem;
+  }
+  .ps-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 3px;
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .ps-btn:hover {
+    background: rgba(201,168,76,0.18);
+    transform: translateY(-2px);
+  }
+  .qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .qr-img {
+    width: 72px;
+    height: 72px;
+    border-radius: 4px;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: block;
+  }
+  .qr-label {
+    font-size: 0.6rem;
+    color: var(--gray);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
 </style>
 </head>
 <body>
@@ -1028,6 +1081,16 @@
       <div class="proj-stack">
         <span>Kotlin</span><span>MVVM</span><span>Agora SDK</span><span>Sendbird</span><span>Firebase</span><span>Sentry</span><span>Singular</span>
       </div>
+      <div class="proj-ps-row">
+        <a href="https://play.google.com/store/apps/details?id=com.suvich.app.android" target="_blank" class="ps-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+          Play Store
+        </a>
+        <div class="qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://play.google.com/store/apps/details?id=com.suvich.app.android&bgcolor=0D1F38&color=C9A84C&margin=6" alt="QR - Suvich – The Real Astrology" class="qr-img" loading="lazy" />
+          <div class="qr-label">Scan to install</div>
+        </div>
+      </div>
     </div>
 
     <div class="proj-card reveal reveal-d1">
@@ -1049,6 +1112,16 @@
       <div class="proj-stack">
         <span>Kotlin</span><span>Clean Arch</span><span>WebSockets</span><span>Firebase</span><span>Agora</span><span>Jetpack</span>
       </div>
+      <div class="proj-ps-row">
+        <a href="https://play.google.com/store/apps/details?id=com.astrosansaar.astrology" target="_blank" class="ps-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+          Play Store
+        </a>
+        <div class="qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://play.google.com/store/apps/details?id=com.astrosansaar.astrology&bgcolor=0D1F38&color=C9A84C&margin=6" alt="QR - AstroSansaar" class="qr-img" loading="lazy" />
+          <div class="qr-label">Scan to install</div>
+        </div>
+      </div>
     </div>
 
     <div class="proj-card reveal reveal-d2">
@@ -1060,6 +1133,16 @@
       <div class="proj-stack">
         <span>Kotlin</span><span>WebSockets</span><span>Agora SDK</span><span>Low-BW Optimization</span><span>Firebase</span>
       </div>
+      <div class="proj-ps-row">
+        <a href="https://play.google.com/store/apps/details?id=com.krishisuvidha.app.android" target="_blank" class="ps-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+          Play Store
+        </a>
+        <div class="qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://play.google.com/store/apps/details?id=com.krishisuvidha.app.android&bgcolor=0D1F38&color=C9A84C&margin=6" alt="QR - Krishi Suvidha (Agro Experts)" class="qr-img" loading="lazy" />
+          <div class="qr-label">Scan to install</div>
+        </div>
+      </div>
     </div>
 
     <div class="proj-card reveal">
@@ -1070,6 +1153,16 @@
       </p>
       <div class="proj-stack">
         <span>Kotlin</span><span>FCM</span><span>Firebase</span><span>Agora</span><span>Sendbird</span><span>Facebook SDK</span>
+      </div>
+      <div class="proj-ps-row">
+        <a href="https://play.google.com/store/apps/details?id=com.suvich.astro.android" target="_blank" class="ps-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+          Play Store
+        </a>
+        <div class="qr-wrap">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://play.google.com/store/apps/details?id=com.suvich.astro.android&bgcolor=0D1F38&color=C9A84C&margin=6" alt="QR - Suvich – For Astrologers" class="qr-img" loading="lazy" />
+          <div class="qr-label">Scan to install</div>
+        </div>
       </div>
     </div>
 
