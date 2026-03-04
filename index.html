@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tushar Saini — Senior Android Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #08192E;
+    --navy-mid: #0F2440;
+    --navy-light: #172F52;
+    --navy-card: #0D1F38;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: rgba(201,168,76,0.15);
+    --gold-border: rgba(201,168,76,0.18);
+    --white: #F4F8FF;
+    --gray: #7A90AB;
+    --gray-light: #A8BDD4;
+    --green: #5EC97A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* TEXTURE */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 5rem;
+    background: rgba(8,25,46,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--gold-border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--gold); letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--gray); text-decoration: none;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    border: 1px solid var(--gold) !important;
+    color: var(--gold) !important;
+    padding: 0.45rem 1.3rem;
+    border-radius: 2px;
+    transition: background 0.25s, color 0.25s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 8rem 5rem 5rem;
+    position: relative;
+    overflow: hidden;
+    gap: 3rem;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .hero-radial {
+    position: absolute; top: -15%; right: -5%;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 68%);
+    pointer-events: none;
+  }
+  .hero-radial-2 {
+    position: absolute; bottom: -20%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(20,80,160,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; animation: fadeUp 0.9s ease both; }
+
+  .badge-row { display: flex; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.72rem; font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .badge-avail {
+    border: 1px solid rgba(94,201,122,0.4);
+    color: var(--green);
+    background: rgba(94,201,122,0.05);
+  }
+  .badge-avail::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: blink 2s infinite;
+  }
+  .badge-kotlin {
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 7vw, 5.8rem);
+    font-weight: 900; line-height: 1.03;
+    color: var(--white); margin-bottom: 0.3rem;
+  }
+  h1 .accent { color: var(--gold); font-style: italic; }
+
+  .hero-title-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem; color: var(--gold);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem; color: var(--gray-light);
+    line-height: 1.8; max-width: 580px;
+    margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-desc strong { color: var(--gold); font-weight: 600; }
+
+  .hero-stats {
+    display: flex; gap: 0; margin-bottom: 2.8rem;
+    border: 1px solid var(--gold-border);
+    border-radius: 4px; overflow: hidden;
+  }
+  .stat {
+    flex: 1; padding: 1.2rem 1.5rem;
+    border-right: 1px solid var(--gold-border);
+    background: rgba(201,168,76,0.02);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; font-weight: 700;
+    color: var(--gold); display: block;
+  }
+  .stat-lbl {
+    font-size: 0.68rem; color: var(--gray);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-top: 0.15rem; display: block;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-gold {
+    background: var(--gold); color: var(--navy);
+    padding: 0.9rem 2.2rem; border: none; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--gray-light);
+    padding: 0.9rem 2.2rem;
+    border: 1px solid var(--gold-border); border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    text-decoration: none; cursor: pointer;
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* photo */
+  .hero-photo { position: relative; z-index: 1; animation: fadeUp 1s 0.3s ease both; flex-shrink: 0; }
+  .photo-wrap {
+    width: 260px; height: 320px;
+    border: 1.5px solid var(--gold-border);
+    border-radius: 4px;
+    background: var(--navy-light);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .photo-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .photo-avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1.5px solid var(--gold-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; margin-bottom: 1rem;
+    position: relative; z-index: 1;
+  }
+  .photo-hint {
+    font-size: 0.7rem; color: var(--gray);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    position: relative; z-index: 1;
+  }
+  .corner { position: absolute; width: 18px; height: 18px; border-color: var(--gold); border-style: solid; opacity: 0.5; }
+  .corner.tl { top: 8px; left: 8px; border-width: 1.5px 0 0 1.5px; }
+  .corner.tr { top: 8px; right: 8px; border-width: 1.5px 1.5px 0 0; }
+  .corner.bl { bottom: 8px; left: 8px; border-width: 0 0 1.5px 1.5px; }
+  .corner.br { bottom: 8px; right: 8px; border-width: 0 1.5px 1.5px 0; }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 6rem 5rem; position: relative; z-index: 1; }
+  .sec-label {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 3.5rem;
+  }
+  .sec-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--gold);
+    letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 700; color: var(--white);
+  }
+  .sec-line { flex: 1; height: 1px; background: var(--gold-border); }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--navy-mid); }
+  .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 5rem; align-items: start; }
+  .about-lead {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 400; font-style: italic;
+    color: var(--gold-light); line-height: 1.6;
+    margin-bottom: 1.8rem;
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--gold);
+  }
+  .about-body p {
+    color: var(--gray-light); line-height: 1.85;
+    margin-bottom: 1.1rem; font-weight: 300; font-size: 0.98rem;
+  }
+  .about-body p strong { color: var(--gold); font-weight: 600; }
+
+  .about-meta { display: flex; flex-direction: column; gap: 0.8rem; }
+  .meta-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--gold-border);
+    border-radius: 3px;
+    background: rgba(201,168,76,0.02);
+    transition: border-color 0.25s;
+  }
+  .meta-item:hover { border-color: rgba(201,168,76,0.35); }
+  .meta-icon { font-size: 1rem; width: 28px; text-align: center; flex-shrink: 0; padding-top: 0.1rem; }
+  .meta-lbl { font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.2rem; font-family: 'DM Mono', monospace; }
+  .meta-val { font-size: 0.88rem; color: var(--white); font-weight: 500; }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--navy); }
+  .services-intro {
+    max-width: 620px; color: var(--gray-light);
+    font-size: 1rem; line-height: 1.75;
+    margin-bottom: 3rem; font-weight: 300;
+  }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .service-card {
+    border: 1px solid var(--gold-border);
+    border-radius: 4px; padding: 2rem;
+    background: var(--navy-card);
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .service-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.7rem;
+  }
+  .service-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.7; margin-bottom: 1.2rem; font-weight: 300; }
+  .service-deliverables { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .service-deliverables li {
+    font-size: 0.78rem; color: var(--gray-light);
+    padding-left: 1rem; position: relative;
+    font-family: 'DM Mono', monospace;
+  }
+  .service-deliverables li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--navy-mid); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+  .skill-card {
+    border: 1px solid var(--gold-border); border-radius: 4px;
+    padding: 1.7rem; background: var(--navy-card);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .skill-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+  .skill-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
+  .skill-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--gold);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    margin-bottom: 1rem;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .tag {
+    font-size: 0.72rem; padding: 0.28rem 0.7rem;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px; color: var(--gray-light);
+    font-family: 'DM Mono', monospace;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tag:hover { border-color: var(--gold); color: var(--gold); }
+  .tag.hot { border-color: rgba(201,168,76,0.45); color: var(--gold-light); }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--navy); }
+  .timeline { padding-left: 2.5rem; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 8px; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, var(--gold) 0%, rgba(201,168,76,0.08) 100%);
+  }
+  .exp-item { position: relative; padding-bottom: 3.5rem; }
+  .exp-dot {
+    position: absolute; left: -2.5rem; top: 5px;
+    width: 11px; height: 11px;
+    border: 1.5px solid var(--gold); border-radius: 50%;
+    background: var(--navy); transform: translateX(-4px);
+  }
+  .exp-dot.current { background: var(--gold); box-shadow: 0 0 14px rgba(201,168,76,0.5); }
+  .exp-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--gold); letter-spacing: 0.12em;
+  }
+  .exp-chip {
+    font-size: 0.65rem; padding: 0.18rem 0.6rem;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    border-radius: 2px; color: var(--gold-light);
+    font-family: 'DM Mono', monospace;
+  }
+  .exp-company {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.25rem;
+  }
+  .exp-role {
+    font-size: 0.85rem; color: var(--gold);
+    font-weight: 500; letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-points li {
+    font-size: 0.88rem; color: var(--gray-light);
+    line-height: 1.7; padding-left: 1.3rem; position: relative; font-weight: 300;
+  }
+  .exp-points li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 0.72rem; top: 0.15rem; }
+  .exp-points li strong { color: var(--white); font-weight: 600; }
+
+  /* ─── PROJECTS ─── */
+  #projects { background: var(--navy-mid); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.3rem; }
+  .proj-card {
+    border: 1px solid var(--gold-border); border-radius: 4px;
+    padding: 2rem; background: var(--navy-card);
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .proj-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-5px); }
+  .proj-card::after {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
+  }
+  .proj-card:hover::after { transform: scaleX(1); }
+  .proj-domain {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; color: var(--gold);
+    text-transform: uppercase; letter-spacing: 0.16em;
+    margin-bottom: 0.6rem;
+  }
+  .proj-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.8rem;
+  }
+  .proj-desc {
+    font-size: 0.86rem; color: var(--gray);
+    line-height: 1.7; margin-bottom: 1.2rem;
+    font-weight: 300; flex: 1;
+  }
+  .proj-desc strong { color: var(--gray-light); font-weight: 500; }
+  .proj-metrics { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; padding: 0.8rem 0; border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border); }
+  .pm-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: var(--gold); font-weight: 700; display: block;
+  }
+  .pm-lbl { font-size: 0.62rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .proj-stack span {
+    font-size: 0.68rem; padding: 0.22rem 0.6rem;
+    background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.14); border-radius: 2px;
+    color: var(--gray); font-family: 'DM Mono', monospace;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--navy); }
+  .testi-note {
+    font-size: 0.82rem; color: var(--gray);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 2rem; font-style: italic;
+    padding: 0.7rem 1rem;
+    border-left: 2px solid rgba(201,168,76,0.3);
+  }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.3rem; }
+  .testi-card {
+    border: 1px solid var(--gold-border); border-radius: 4px;
+    padding: 2rem; background: var(--navy-card);
+    position: relative;
+  }
+  .testi-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; color: rgba(201,168,76,0.08);
+    position: absolute; top: -0.5rem; left: 1rem;
+    line-height: 1; pointer-events: none;
+  }
+  .testi-text {
+    font-size: 0.9rem; color: var(--gray-light);
+    line-height: 1.75; margin-bottom: 1.5rem;
+    font-style: italic; font-weight: 300;
+    position: relative; z-index: 1;
+  }
+  .testi-author { display: flex; align-items: center; gap: 0.9rem; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .testi-name { font-size: 0.88rem; color: var(--white); font-weight: 600; }
+  .testi-role { font-size: 0.72rem; color: var(--gold); font-family: 'DM Mono', monospace; }
+  .testi-placeholder {
+    border: 1px dashed rgba(201,168,76,0.25); border-radius: 4px;
+    padding: 2rem; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+  }
+  .testi-placeholder-icon { font-size: 2rem; opacity: 0.4; }
+  .testi-placeholder-text { font-size: 0.8rem; color: var(--gray); line-height: 1.6; font-weight: 300; }
+  .testi-placeholder-text strong { color: var(--gold); font-weight: 600; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--navy-mid); text-align: center; }
+  .contact-inner { max-width: 680px; margin: 0 auto; }
+  .avail-pill {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.55rem 1.4rem;
+    border: 1px solid rgba(94,201,122,0.3);
+    border-radius: 30px; color: var(--green);
+    font-size: 0.75rem; letter-spacing: 0.1em;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 1.8rem;
+  }
+  .avail-pill::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--green); border-radius: 50%;
+    animation: blink 2s infinite;
+  }
+  .contact-h {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin-bottom: 1.1rem;
+  }
+  .contact-h em { color: var(--gold); font-style: italic; }
+  .contact-sub {
+    color: var(--gray-light); font-size: 0.96rem;
+    line-height: 1.75; margin-bottom: 3rem; font-weight: 300;
+  }
+  .contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .c-card {
+    border: 1px solid var(--gold-border); border-radius: 3px;
+    padding: 1.3rem 1rem;
+    background: var(--navy-card);
+    text-decoration: none;
+    transition: border-color 0.25s, transform 0.25s;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  }
+  .c-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .c-icon { font-size: 1.3rem; }
+  .c-lbl { font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; font-family: 'DM Mono', monospace; }
+  .c-val { font-size: 0.78rem; color: var(--gray); word-break: break-all; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #040E1B; padding: 1.8rem 5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    position: relative; z-index: 1;
+  }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); }
+  .footer-note { font-size: 0.72rem; color: var(--gray); font-family: 'DM Mono', monospace; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; }
+    .hero-photo { display: flex; justify-content: center; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .hero-stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--gold-border); }
+    .stat:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">TS.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-radial"></div>
+  <div class="hero-radial-2"></div>
+
+  <div class="hero-content">
+    <div class="badge-row">
+      <span class="badge badge-avail">Open to Work</span>
+      <span class="badge badge-kotlin">Kotlin · Java · Android</span>
+    </div>
+
+    <h1>Tushar <span class="accent">Saini</span></h1>
+    <div class="hero-title-sub">Senior Android Engineer · 6 Years</div>
+
+    <p class="hero-desc">
+      I build Android apps that <strong>scale to millions of users</strong> — specializing in
+      <strong>real-time communication systems</strong>: live chat, audio/video calling, and live streaming
+      using Agora SDK, WebSockets, and Firebase. <strong>~100 production releases</strong> shipped.
+      Clean Architecture. Zero-compromise performance.
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-val">6+</span>
+        <span class="stat-lbl">Years in Production</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">1M+</span>
+        <span class="stat-lbl">Installs (Suvich)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">1.5L+</span>
+        <span class="stat-lbl">Installs (AstroSansaar)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">~100</span>
+        <span class="stat-lbl">Production Releases</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">4.5★</span>
+        <span class="stat-lbl">Play Store Rating</span>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#projects" class="btn-gold">See My Work</a>
+      <a href="#contact" class="btn-ghost">Hire Me →</a>
+    </div>
+  </div>
+
+  <div class="hero-photo">
+    <div class="photo-wrap">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <div class="photo-avatar">👤</div>
+      <div class="photo-hint">Your Photo Here</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="sec-label reveal">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">About Me</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="about-lead">
+        "I've shipped ~100 production releases, integrated 20+ REST APIs and 10+ third-party SDKs,
+        and built real-time communication systems now used by over 1.15 million people."
+      </p>
+      <div class="about-body">
+        <p>
+          For 6 years I've specialized in the hardest problems in mobile: <strong>real-time communication systems at scale</strong> — live chat, one-to-one audio/video calling, and multi-user live streaming — all shipped, all in production, all battle-tested at 1M+ user scale.
+        </p>
+        <p>
+          At Dhawala Online Solutions, I <strong>led a 4–6 person Android team</strong> for Suvich, taking it from ground zero to 1M+ installs with 8,000+ reviews and a 4.5+ Play Store rating — delivering approximately <strong>100 bi-weekly production releases over 4 years</strong>. I owned the entire real-time stack: Sendbird and Firebase for chat, Agora SDK for calls and live sessions, and a concurrent order queue system engineered to handle simultaneous requests without race conditions.
+        </p>
+        <p>
+          I work with <strong>Clean Architecture and MVVM</strong> not because it sounds good on a resume, but because I've seen what happens to apps that don't. I write Kotlin code that teams can actually maintain, extend, and be proud of six months later.
+        </p>
+        <p>
+          Currently at AstroSansaar, leading Android across <strong>3 products</strong> (AstroSansaar, Krishi Suvidha, LegalFind). Open to <strong>freelance projects and remote full-time roles</strong> worldwide.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-meta reveal reveal-d1">
+      <div class="meta-item">
+        <div class="meta-icon">📍</div>
+        <div>
+          <div class="meta-lbl">Location</div>
+          <div class="meta-val">Dera Bassi, Punjab · Remote-Ready</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">✉️</div>
+        <div>
+          <div class="meta-lbl">Email</div>
+          <div class="meta-val">14tusharsaini@gmail.com</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">📱</div>
+        <div>
+          <div class="meta-lbl">Phone / WhatsApp</div>
+          <div class="meta-val">+91 90419 52816</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">🎓</div>
+        <div>
+          <div class="meta-lbl">Education</div>
+          <div class="meta-val">B.Tech Computer Science</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">💼</div>
+        <div>
+          <div class="meta-lbl">LinkedIn</div>
+          <div class="meta-val">tushar-saini-b76635145</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon">🌍</div>
+        <div>
+          <div class="meta-lbl">Time Zone</div>
+          <div class="meta-val">IST (UTC+5:30) · Flexible Hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="sec-label reveal">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">What I Can Build for You</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <p class="services-intro reveal">
+    Whether you need a feature built, an architecture set up from scratch, or an existing app rescued —
+    here's exactly what I deliver. Every engagement comes with clean, documented, production-ready code.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">💬</div>
+      <div class="service-name">Real-Time Chat Integration</div>
+      <p class="service-desc">End-to-end in-app messaging built to handle thousands of concurrent users. I've shipped this at scale using multiple real-time stacks.</p>
+      <ul class="service-deliverables">
+        <li>WebSocket-based messaging with reconnect logic</li>
+        <li>Firebase Realtime DB chat implementation</li>
+        <li>Sendbird SDK integration & customization</li>
+        <li>Typing indicators, read receipts, media messages</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon">📹</div>
+      <div class="service-name">Audio / Video Calling</div>
+      <p class="service-desc">Production-grade 1-to-1 and group calling using Agora SDK — handling edge cases like background states, poor network, and device switching.</p>
+      <ul class="service-deliverables">
+        <li>Agora SDK audio & video call integration</li>
+        <li>Call state management across app lifecycles</li>
+        <li>Notification-based call pickup (foreground & background)</li>
+        <li>Network resilience and reconnection handling</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon">🎙️</div>
+      <div class="service-name">Live Streaming Features</div>
+      <p class="service-desc">Interactive live sessions with multi-user broadcasting. Shipped for astrology consultation apps with real-time host/audience interaction.</p>
+      <ul class="service-deliverables">
+        <li>Agora interactive live streaming (host + audience)</li>
+        <li>Real-time viewer count & audience interaction</li>
+        <li>Gift/reaction systems during live sessions</li>
+        <li>Order queue management for concurrent sessions</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">🏗️</div>
+      <div class="service-name">Android App Architecture</div>
+      <p class="service-desc">Clean, scalable foundations that survive team growth and product pivots. Ideal for startups about to scale or teams inheriting messy codebases.</p>
+      <ul class="service-deliverables">
+        <li>MVVM + Clean Architecture setup</li>
+        <li>Kotlin Coroutines & Flow migration</li>
+        <li>Jetpack components: ViewModel, Navigation, Room</li>
+        <li>Code review & architecture consulting</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon">🔌</div>
+      <div class="service-name">SDK & API Integration</div>
+      <p class="service-desc">Third-party integrations done right — with proper error handling, token refresh flows, and clean abstraction layers your team can work with.</p>
+      <ul class="service-deliverables">
+        <li>Firebase (Auth, FCM, Analytics, Crashlytics)</li>
+        <li>Sentry crash monitoring setup</li>
+        <li>Payment gateway & social login integration</li>
+        <li>REST API integration with Retrofit + OkHttp</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon">⚡</div>
+      <div class="service-name">Performance Optimization</div>
+      <p class="service-desc">App too slow? Too many crashes? I specialize in diagnosing and fixing the performance issues that kill user retention and Play Store ratings.</p>
+      <ul class="service-deliverables">
+        <li>ANR & crash rate reduction via Android Profiler</li>
+        <li>Memory leak detection and resolution</li>
+        <li>Cold/warm start time optimization</li>
+        <li>Low-bandwidth optimization for emerging markets</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="sec-label reveal">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Skills & Tech Stack</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔤</div>
+      <div class="skill-name">Languages</div>
+      <div class="tags">
+        <span class="tag hot">Kotlin</span>
+        <span class="tag hot">Java</span>
+        <span class="tag">XML</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal reveal-d1">
+      <div class="skill-icon">🏗️</div>
+      <div class="skill-name">Architecture</div>
+      <div class="tags">
+        <span class="tag hot">MVVM</span>
+        <span class="tag hot">Clean Architecture</span>
+        <span class="tag">MVC</span>
+        <span class="tag">Repository Pattern</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal reveal-d2">
+      <div class="skill-icon">🧩</div>
+      <div class="skill-name">Jetpack Components</div>
+      <div class="tags">
+        <span class="tag hot">ViewModel</span>
+        <span class="tag hot">LiveData</span>
+        <span class="tag hot">Flow</span>
+        <span class="tag hot">Navigation</span>
+        <span class="tag">Room DB</span>
+        <span class="tag">WorkManager</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">Concurrency</div>
+      <div class="tags">
+        <span class="tag hot">Coroutines</span>
+        <span class="tag hot">StateFlow</span>
+        <span class="tag hot">SharedFlow</span>
+        <span class="tag">RxJava (aware)</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal reveal-d1">
+      <div class="skill-icon">💬</div>
+      <div class="skill-name">Real-Time Communication</div>
+      <div class="tags">
+        <span class="tag hot">WebSockets</span>
+        <span class="tag hot">Firebase RT DB</span>
+        <span class="tag hot">Sendbird</span>
+        <span class="tag">OkHttp WS</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal reveal-d2">
+      <div class="skill-icon">📹</div>
+      <div class="skill-name">Media & Streaming</div>
+      <div class="tags">
+        <span class="tag hot">Agora SDK</span>
+        <span class="tag hot">Audio Call</span>
+        <span class="tag hot">Video Call</span>
+        <span class="tag hot">Live Streaming</span>
+        <span class="tag">Agora SD-RTN™</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔥</div>
+      <div class="skill-name">Firebase & Backend</div>
+      <div class="tags">
+        <span class="tag hot">FCM / Push</span>
+        <span class="tag hot">Firebase Auth</span>
+        <span class="tag">Cloud Firestore</span>
+        <span class="tag hot">REST APIs</span>
+        <span class="tag">Retrofit</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal reveal-d1">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Monitoring & Analytics</div>
+      <div class="tags">
+        <span class="tag hot">Sentry</span>
+        <span class="tag">Firebase Analytics</span>
+        <span class="tag">Crashlytics</span>
+        <span class="tag">Singular</span>
+        <span class="tag">Facebook SDK</span>
+        <span class="tag">OneSignal</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal reveal-d2">
+      <div class="skill-icon">🛠️</div>
+      <div class="skill-name">Tools & Workflow</div>
+      <div class="tags">
+        <span class="tag hot">Android Studio</span>
+        <span class="tag hot">Android Profiler</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">Bitbucket</span>
+        <span class="tag">Jira</span>
+        <span class="tag">Git Flow</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="sec-label reveal">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Work Experience</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="exp-item reveal">
+      <div class="exp-dot current"></div>
+      <div class="exp-meta">
+        <span class="exp-date">DEC 2024 — PRESENT</span>
+        <span class="exp-chip">Current</span>
+      </div>
+      <div class="exp-company">AstroSansaar</div>
+      <div class="exp-role">Senior Android Engineer · Panchkula, Haryana</div>
+      <ul class="exp-points">
+        <li>Built AstroSansaar from scratch across <strong>3 apps</strong> (AstroSansaar, Krishi Suvidha, LegalFind) — grew to 100K+ installs through iterative, performance-driven releases.</li>
+        <li>Architected real-time chat (<strong>WebSockets + Firebase</strong>) and audio/video calling (<strong>Agora SDK</strong>) from the ground up, supporting live expert consultations at scale.</li>
+        <li>Designed a <strong>concurrent order queue system</strong> handling simultaneous service requests without race conditions — integrated <strong>20+ REST APIs and 10+ third-party SDKs</strong> end-to-end.</li>
+        <li>Optimised app startup time and rendering performance using <strong>Android Profiler</strong> across a diverse device matrix spanning 5+ Android versions.</li>
+        <li>Owning the full release pipeline — crash triage via Sentry, production stability monitoring, and continuous delivery across multiple app variants.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-dot"></div>
+      <div class="exp-meta">
+        <span class="exp-date">AUG 2020 — NOV 2024</span>
+        <span class="exp-chip">4+ Years · Lead Role</span>
+      </div>
+      <div class="exp-company">Dhawala Online Solutions Pvt. Ltd.</div>
+      <div class="exp-role">Lead Android Developer · Panchkula, Haryana</div>
+      <ul class="exp-points">
+        <li>Built Suvich – The Real Astrology <strong>from scratch to 1M+ installs, 4.5&#9733; rating, and 8,000+ reviews</strong> — delivered <strong>~100 production releases at bi-weekly cadence</strong> while leading a 4–6 person Android team.</li>
+        <li>Owned the full real-time communication stack: live audio/video and live streaming (<strong>Agora SDK</strong>), real-time chat (<strong>Sendbird + Firebase</strong>), and notification-driven order acceptance across all Android lifecycle states.</li>
+        <li>Resolved ANR and memory issues via <strong>Android Profiler</strong>; maintained stability across <strong>100+ device/OS combinations</strong>.</li>
+        <li>Integrated and maintained <strong>10+ SDKs</strong> — Agora, Sendbird, Sentry, Firebase, Facebook SDK, Singular, OneSignal — each with proper abstraction and error handling.</li>
+        <li>Acted as <strong>sole decision-maker for all Android architecture and release decisions</strong> — collaborated directly with product, backend, and design teams every sprint.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-dot"></div>
+      <div class="exp-meta">
+        <span class="exp-date">SEP 2019 — MAY 2020</span>
+        <span class="exp-chip">Early Career</span>
+      </div>
+      <div class="exp-company">Imark Infotech &amp; WE ARE CODERS</div>
+      <div class="exp-role">Android Developer · Chandigarh / Dera Bassi</div>
+      <ul class="exp-points">
+        <li>Contributed to early-stage Android app development (<strong>Selfpause</strong> at Imark); implemented and debugged core features collaborating across engineering, design, and product teams.</li>
+        <li>Gained foundational experience in team-based development workflows, code quality practices, and shipping features from concept to build.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="sec-label reveal">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Featured Projects</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-domain">Astrology · Consumer · India</div>
+      <div class="proj-name">Suvich – The Real Astrology</div>
+      <p class="proj-desc">
+        Built <strong>from scratch to market leader</strong> over 4 years. Delivered <strong>~100 bi-weekly production releases</strong> leading a 4–6 person team. Architected the complete real-time layer: live chat, 1-to-1 audio/video calls, and multi-user live streaming. Designed a concurrent order queue that ensures consultations are never dropped. Integrated <strong>10+ SDKs</strong> and maintained stability across 100+ device/OS combinations.
+      </p>
+      <div class="proj-metrics">
+        <div>
+          <span class="pm-val">1M+</span>
+          <span class="pm-lbl">Installs</span>
+        </div>
+        <div>
+          <span class="pm-val">4.5★</span>
+          <span class="pm-lbl">Rating</span>
+        </div>
+        <div>
+          <span class="pm-val">8K+</span>
+          <span class="pm-lbl">Reviews</span>
+        </div>
+      </div>
+      <div class="proj-stack">
+        <span>Kotlin</span><span>MVVM</span><span>Agora SDK</span><span>Sendbird</span><span>Firebase</span><span>Sentry</span><span>Singular</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-d1">
+      <div class="proj-domain">Astrology · Consumer · India · 3-App Ecosystem</div>
+      <div class="proj-name">AstroSansaar</div>
+      <p class="proj-desc">
+        Built from scratch as a <strong>3-app ecosystem</strong> (AstroSansaar, Krishi Suvidha, LegalFind). Architected WebSocket + Firebase real-time chat with reconnection logic, Agora audio/video calling, and a <strong>concurrent order queue system</strong> free of race conditions. Integrated <strong>20+ REST APIs and 10+ SDKs</strong>. Reached 1.5 lakh installs through iterative, performance-driven releases.
+      </p>
+      <div class="proj-metrics">
+        <div>
+          <span class="pm-val">1.5L+</span>
+          <span class="pm-lbl">Installs</span>
+        </div>
+        <div>
+          <span class="pm-val">Active</span>
+          <span class="pm-lbl">In Production</span>
+        </div>
+      </div>
+      <div class="proj-stack">
+        <span>Kotlin</span><span>Clean Arch</span><span>WebSockets</span><span>Firebase</span><span>Agora</span><span>Jetpack</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-d2">
+      <div class="proj-domain">AgriTech · Rural India</div>
+      <div class="proj-name">Krishi Suvidha (Agro Experts)</div>
+      <p class="proj-desc">
+        Agricultural expert consultation platform built for <strong>rural India's network realities</strong>. Implemented socket-based real-time chat optimized for intermittent connectivity. Integrated Agora SDK for audio/video expert calls. Every feature was stress-tested for <strong>low-bandwidth scenarios</strong> where users may be on 2G or unstable 4G.
+      </p>
+      <div class="proj-stack">
+        <span>Kotlin</span><span>WebSockets</span><span>Agora SDK</span><span>Low-BW Optimization</span><span>Firebase</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-domain">Astrology · B2B · Expert-Facing</div>
+      <div class="proj-name">Suvich – For Astrologers</div>
+      <p class="proj-desc">
+        The expert-side companion app to Suvich. Built a sophisticated <strong>notification-driven order acceptance system</strong> that works reliably across all Android app states — foreground, background, and process-killed — ensuring astrologers never miss a consultation booking.
+      </p>
+      <div class="proj-stack">
+        <span>Kotlin</span><span>FCM</span><span>Firebase</span><span>Agora</span><span>Sendbird</span><span>Facebook SDK</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-d1">
+      <div class="proj-domain">Legal Tech · Consumer</div>
+      <div class="proj-name">LegalFind</div>
+      <p class="proj-desc">
+        Consumer-facing legal services platform connecting users with legal professionals. Built at AstroSansaar as part of a multi-product Android ecosystem, sharing architecture patterns and component libraries with the core platform for faster delivery.
+      </p>
+      <div class="proj-stack">
+        <span>Kotlin</span><span>MVVM</span><span>Clean Arch</span><span>REST APIs</span><span>Jetpack</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials">
+  <div class="sec-label reveal">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">What People Say</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <p class="testi-note reveal">
+    💡 Tip: Ask your manager at AstroSansaar or a team lead from Dhawala for a short LinkedIn recommendation —
+    even 2–3 sentences about your work on Suvich would dramatically increase client trust.
+  </p>
+
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <p class="testi-text">
+        "Tushar architected the entire real-time communication layer for Suvich — chat, calling, and live sessions.
+        The app scaled to over a million users without the foundation ever cracking. He owned Android like it was his own product."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar">👤</div>
+        <div>
+          <div class="testi-name">Team Lead / CTO</div>
+          <div class="testi-role">Dhawala Online Solutions · Add real name here</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal reveal-d1">
+      <p class="testi-text">
+        "He delivered a production-quality Agora integration — audio calls, video calls, and live streaming — 
+        all within a single sprint cycle and with edge cases handled that we hadn't even thought of."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar">👤</div>
+        <div>
+          <div class="testi-name">Product Manager</div>
+          <div class="testi-role">AstroSansaar · Add real name here</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-placeholder reveal reveal-d2">
+      <div class="testi-placeholder-icon">⭐</div>
+      <div class="testi-placeholder-text">
+        <strong>Add a real testimonial here.</strong><br>
+        Reach out to a manager, stakeholder, or colleague on LinkedIn and ask for a short recommendation.
+        One genuine quote here is worth more than 10 bullet points in your skills section.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="avail-pill reveal">Available for freelance & remote roles</div>
+
+    <h2 class="contact-h reveal">Let's Build Something <em>Great</em></h2>
+    <p class="contact-sub reveal">
+      Looking for an Android developer who can own the entire mobile layer — architecture, real-time features,
+      third-party SDKs, and production stability? I'm open to freelance projects and full-time remote positions worldwide.
+    </p>
+
+    <div class="contact-cards reveal">
+      <a href="mailto:14tusharsaini@gmail.com" class="c-card">
+        <div class="c-icon">✉️</div>
+        <div class="c-lbl">Email</div>
+        <div class="c-val">14tusharsaini@gmail.com</div>
+      </a>
+      <a href="tel:+919041952816" class="c-card">
+        <div class="c-icon">📱</div>
+        <div class="c-lbl">Phone / WhatsApp</div>
+        <div class="c-val">+91 90419 52816</div>
+      </a>
+      <a href="https://linkedin.com/in/tushar-saini-b76635145" target="_blank" class="c-card">
+        <div class="c-icon">💼</div>
+        <div class="c-lbl">LinkedIn</div>
+        <div class="c-val">tushar-saini-b76635145</div>
+      </a>
+      <a href="https://github.com/Tusharsaini14" target="_blank" class="c-card">
+        <div class="c-icon">🐙</div>
+        <div class="c-lbl">GitHub</div>
+        <div class="c-val">Tusharsaini14</div>
+      </a>
+    </div>
+
+    <a href="mailto:14tusharsaini@gmail.com" class="btn-gold reveal">Send Me a Message</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">Tushar Saini</div>
+  <div class="footer-note">Senior Android Engineer · Remote-Ready Worldwide · 2025</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav active highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) cur = s.id; });
+    navLinks.forEach(a => {
+      const isActive = a.getAttribute('href') === '#' + cur;
+      if (!a.classList.contains('nav-cta')) a.style.color = isActive ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
