@@ -456,7 +456,8 @@
   }
 
   /* ─── TESTIMONIALS ─── */
-  #testimonials { background: var(--navy); }
+  /* #testimonials { background: var(--navy); } */
+  #testimonials { display: none; }
   .testi-note {
     font-size: 0.82rem; color: var(--gray);
     font-family: 'DM Mono', monospace;
@@ -672,7 +673,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
+    <!-- <li><a href="#testimonials">Reviews</a></li> -->
     <li><a href="#contact" class="nav-cta">Hire Me</a></li>
   </ul>
 </nav>
@@ -778,14 +779,14 @@
           <div class="meta-val">Dera Bassi, Punjab · Remote-Ready</div>
         </div>
       </div>
-      <div class="meta-item">
+<a href="mailto:14tusharsaini@gmail.com" class="meta-item" style="text-decoration:none;cursor:pointer;">
         <div class="meta-icon">✉️</div>
         <div>
           <div class="meta-lbl">Email</div>
           <div class="meta-val">14tusharsaini@gmail.com</div>
         </div>
-      </div>
-      <div class="meta-item">
+      </a>
+<div class="meta-item" onclick="document.getElementById('phone-popup').style.display='flex'" style="cursor:pointer;">
         <div class="meta-icon">📱</div>
         <div>
           <div class="meta-lbl">Phone / WhatsApp</div>
@@ -799,13 +800,13 @@
           <div class="meta-val">B.Tech Computer Science</div>
         </div>
       </div>
-      <div class="meta-item">
+<a href="https://linkedin.com/in/tushar-saini-b76635145" target="_blank" class="meta-item" style="text-decoration:none;cursor:pointer;">
         <div class="meta-icon">💼</div>
         <div>
           <div class="meta-lbl">LinkedIn</div>
           <div class="meta-val">tushar-saini-b76635145</div>
         </div>
-      </div>
+      </a>
       <div class="meta-item">
         <div class="meta-icon">🌍</div>
         <div>
@@ -1285,11 +1286,16 @@
         <div class="c-lbl">Email</div>
         <div class="c-val">14tusharsaini@gmail.com</div>
       </a>
-      <a href="tel:+919041952816" class="c-card">
+      <!-- <a href="tel:+919041952816" class="c-card">
         <div class="c-icon">📱</div>
         <div class="c-lbl">Phone / WhatsApp</div>
         <div class="c-val">+91 90419 52816</div>
-      </a>
+      </a> -->
+<div class="c-card" onclick="document.getElementById('phone-popup').style.display='flex'" style="cursor:pointer;text-decoration:none;">
+  <div class="c-icon">📱</div>
+  <div class="c-lbl">Phone / WhatsApp</div>
+  <div class="c-val">+91 90419 52816</div>
+</div>
       <a href="https://linkedin.com/in/tushar-saini-b76635145" target="_blank" class="c-card">
         <div class="c-icon">💼</div>
         <div class="c-lbl">LinkedIn</div>
@@ -1317,6 +1323,24 @@
   <div class="footer-brand">Tushar Saini</div>
   <div class="footer-note">Senior Android Engineer · Remote-Ready Worldwide · 2025</div>
 </footer>
+
+    <!-- ── PHONE POPUP ── -->
+<div id="phone-popup" style="display:none;position:fixed;inset:0;background:rgba(8,25,46,0.85);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(8px);">
+  <div style="background:#0F2440;border:1px solid rgba(201,168,76,0.3);border-radius:6px;padding:2.5rem 2rem;max-width:320px;width:90%;text-align:center;position:relative;">
+    <button onclick="document.getElementById('phone-popup').style.display='none'" style="position:absolute;top:0.8rem;right:1rem;background:none;border:none;color:#7A90AB;font-size:1.3rem;cursor:pointer;">✕</button>
+    <div style="font-size:2rem;margin-bottom:0.8rem;">📱</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#F4F8FF;margin-bottom:0.4rem;">Get in Touch</div>
+    <div style="font-size:0.8rem;color:#7A90AB;font-family:'DM Mono',monospace;margin-bottom:1.8rem;">+91 90419 52816</div>
+    <div style="display:flex;flex-direction:column;gap:0.8rem;">
+      <a href="tel:+919041952816" style="display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.85rem;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.35);border-radius:3px;color:#C9A84C;font-family:'DM Mono',monospace;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;" onmouseover="this.style.background='rgba(201,168,76,0.18)'" onmouseout="this.style.background='rgba(201,168,76,0.08)'">
+        📞 Call Directly
+      </a>
+      <a href="https://wa.me/919041952816" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:0.85rem;background:#25D366;border:1px solid #25D366;border-radius:3px;color:#fff;font-family:'DM Mono',monospace;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;" onmouseover="this.style.background='#1ebe5d'" onmouseout="this.style.background='#25D366'">
+        💬 WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
   // Scroll reveal
